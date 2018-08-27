@@ -1,0 +1,271 @@
+
+	MEAN Stack web development
+	--------------------------
+	Banuprakash C
+	CO-Founder Advantech,
+	CO-Founder, Director Lucida Technologies Pvt Ltd.,
+	banu@lucidatechnologies.com
+	banuprakashc@yahoo.co.in
+	https://www.linkedin.com/in/banu-prakash-50416019/
+	http://lucidatechnologies.com
+	--------------------------------------------------
+
+	JavaScript
+	Node JS
+	MongoDB
+	Angular 6
+
+	MongoExpressAngularNode
+	-----------------------------------------------------------------
+
+	JavaScript
+	----------
+		JS is loosely typed scripting language
+		It is based on event driven model
+
+		Loosely typed:
+			In JS we can't define a member to be of a specific type
+			var name = 'Smith'; // internally it treats this as string
+			var x = 10; // internally it knows that this is a number
+			x = 'something';
+
+		data types: string, number, boolean, array, object, undefined, null
+
+		var data; // undefined
+
+		JavaScript need javascript engine to execute
+		JavaScript engines available:
+		V8 ---> Google ---> used in Chrome browser and NODEJS env
+		SpiderMonkey ---> Firefox and Adobe Professional and adobe products
+		Chakra --> Microsoft --> IE
+		Rhino --> Sun Microsystems
+		NashHorn --> Oracle [Sun]
+
+		----------------------
+		Functions:
+
+		function doTask(x, y) {
+			return x + y;
+		}
+
+
+		var result = doTask(5,4); // 9
+
+		------------------
+		JavaSCript engine introduces semi-colons
+
+		function doTask(x, y) {
+			return
+				x + y;
+		}
+
+		JS introduces ; at every EOL
+		var result = doTask(5,4); // undefined
+
+		--------------------------------------
+
+		var elems = [4,6,2];
+
+		elems[20] = 100;
+
+		elems.push(100); //prefer this
+
+		---------------------------------------
+
+
+		Event Driven
+
+			a.js
+
+			setInterval(function() {
+				console.log("Hello");
+			}, 1000);
+
+			console.log("Good Day !!!");
+
+			$("#add").click(function() {
+				console.log("You Clicked!!!");
+			});
+
+
+
+			Assume a Button with ID "add" exists
+================================================================================
+
+	Java Script Objects
+
+		different ways of creating objects:
+		1) using function Constructor
+			adding methods using prototype [ class owned instance methods] 
+			and without prototype [ object owned instance methods]
+	
+
+		var x = "Hello";
+
+		String.prototype.makeItRed = function() { return "<font color='red'>" + this +"</font>"; }
+		document.write(x.makeItRed());
+
+
+		2) using JSON : {}
+			{
+				"id" : 1,
+				"name" : "some",
+				"getDetails" : function() {
+
+				}
+			}
+
+		3) using Object constructor
+			var obj = new Object();
+			obj.id= 11;
+			obj.method = function() {
+
+			}
+========================================================================
+		
+		HIGH ORDER Functions:
+			a) functions which accept other functions as arguments
+			b) functions which return a function
+
+		JavaScript supports functional style of programming.
+
+	OOP	 								Functional style of Programming
+	we pass objects and 				we pass functions as as argument to functions
+	primitives to methods
+
+	tightly coupled to 					Not tightly coupled to state of object
+	state of object 
+
+	class Account {
+		balance;
+
+		void deposit(double amt) {
+			this.balance += amt;
+		}
+
+		double getBalance() {
+			return this.balance;
+		}
+	}
+
+	Functional style treats "functions" as first-class members similar to
+	primitives and objects.
+
+	var ref;
+
+	ref = 12;
+
+
+	ref = function() {
+
+	}
+
+	ref = {};
+	=======
+
+	map => TRANSFORM DATA
+	FILTER => GIVE FILTERED DATA BASED ON PREDICATE FUNCTIONS
+	REDUCE => GET AGGREGATES
+
+	==============
+
+	Closures can be used to implement Memoize Design Pattern
+
+	Observer Observable design pattern
+==============================================================
+
+	We have covered now ES 5 version of JavaScript
+	ECMAScript version 5
+	---------
+
+	ES 6 also know as ES2015 is the current version
+	ES 6 --> still many browsers doesn't support
+
+	ES 7 is work in progress
+
+
+	Transpilers converts ES 6 --> ES 5
+		BABEL is a transpiler
+
+	What are the new features of ES 6
+	---------------------------------
+		a) Scope variables
+
+		Before ES 6:
+
+		var x = 10;
+		function doTask() {
+			var first = 100;
+			if(first > 10) {
+				var second = 200; // hoisted to function scope
+				third = 300; // hoisted to global
+			}
+			console.log(x, first, second, thrid); // all are visible
+		}
+
+		console.log(x, third); // visible
+
+
+		ES 6:
+			var x = 10;
+		function doTask() {
+			var first = 100;
+			if(first > 10) {
+				let second = 200; // scope variable
+				third = 300; // hoisted to global
+			}
+			console.log(x, first, second, thrid); // second is not visible
+		}
+
+
+		let and const are the new keywords
+		let ==: variable
+		const for constant
+		---------
+
+		To Avoid using variables withou declaration:
+
+		'use strict'
+
+
+		b) Template String literal
+
+			var data = "this is my data";
+			var data = 'this is my data';
+
+			ES 6: ``
+
+			var name = "Smith";
+
+			var message = `
+				Welcome,
+				Mr ${name} 
+				Thanks for All.
+			`;
+
+		c) DeConstructing:
+
+			var colors = ['red','green','blue','orange'];
+
+			var b = colors[2];
+
+			var [r,g,...others] = colors;
+
+		d) Arrow Operator and default arguments
+
+		function add(x= 10, y = 0) {
+			return x + y;
+		}
+
+		console.log(add());
+		console.log(add(35));
+		console.log(add(14,66));
+
+
+		var sub = (x,y) => { return x - y; }
+
+		
+===================================
+
+
+
