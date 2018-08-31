@@ -1,0 +1,195 @@
+
+	MEAN Stack
+	----------
+
+	RESTful Web services
+	Representational State Transfer
+		works on HTTP protocol
+	URL ==> Nouns
+	ACTIONS ===> VERBS [ HTTP METHODS]
+
+	GET
+		http://localhost:3000/customers
+			get all customers
+		http://localhost:3000/customers/3
+			get customer whose id is 3
+		http://localhost:3000/customers?place=bangalore
+			use query param for filter
+
+	POST
+		http://localhost:3000/customers
+		payload contains the new customer data
+	DELETE
+		http://localhost:3000/customers/3
+			delete customer whose id is 3
+	PUT
+		http://localhost:3000/customers/3
+			modify customer whose id is 3
+			payload contains new data
+
+	--------
+	1) model folder
+		copy customers.js [ from data folder]
+	2) create customer.js in "routes" folder
+		copy contents of "customer.js" from github
+	-----------------
+
+		http://localhost:3000/customers/
+		http://localhost:3000/customers/3
+	----------------------------------------------------
+		LAST Commit wins
+		FIRST Commit wins
+	----------------------------
+
+	TypeScript and Webpack
+
+		Bundlers: 
+			a) combine all js/css files into bundle
+			<script src="a.js"></script>
+			<script src="b.js"></script>
+			<script src="c.js"></script>
+			b) minify the JS
+			c) uglify the JS
+
+		GRUNT, GULP and Webpack are bundler tools
+	---------------------------------------------------
+
+		Angular 6
+		---------
+			is a Web framework
+		Why Angular?
+			Challenges faced while building client side web application?
+			a) DOM manipluation
+			b) Data Binding
+				HTML component <---> JSON data
+				i) one way binding
+				ii) two way binding
+			c) Handling Routes
+				we need to create different views for different URIs
+
+				http://flipkart/mobiles	
+				http://flipkart/tvs
+					http://flipkart/mobiles/iPhonex
+					http://flipkart/mobiles/Pixel
+	--------------------------------------------------------
+
+	Angular Building blocks
+		a) component
+			view template
+			css
+			actions
+		b) service
+			business logic
+			AJAX calls to Backend
+		c) directive
+		d) router
+		e) pipe
+			transformers
+				uppercase, lowercase, json, date
+		f) module
+			we create many modules:
+			customer module, payment module, trip module,
+			Module is a collection components, services, pipes, etc
+===================================================================
+
+	npm i -g @angular/cli
+
+	ng new
+The Angular CLI makes it easy to create an application that already works, right out of the box. It already follows our best practices!
+	
+	1) ng new customerng
+	2) ng g c customers
+		generate a component custoemrs
+	3) npm i --save bootstrap@3
+
+	Bootstrap uses 12 grid model
+	A Row is divided into 12 grids
+
+		app-component
+			customer-component [customers]
+				customer-card-component
+		{{today | date:"dd MMM yyyy"}}
+{{customers | json}}
+======================================================================
+
+	npm i -g @angular/cli
+
+	ng new appname
+		creates a new application by name "appname"
+
+	ng serve 
+		is to start light-http server which is built-in
+
+	main.ts
+		entry point for your application
+		==> bootstrap "app.module"
+			==> which is the core module
+		==> app.module loads
+			a) components
+			b) services
+			c) other modules
+			d) bootstraps the main component [ app.component.ts]
+		==> app.component.ts
+			inside its template if we use any other component
+				<card-view> </card-view>
+	=======
+		To pass properties/data from parent to chid
+		Parent ---> @Input() ---> Child
+
+		EventEmmiter
+		Child ---> @Output() ---> Parent
+	========
+		[] for properties
+		() for events
+		[()] two way binding of property
+		{{data}} one way binding
+	=========
+		Service
+			==> common code to be used by many components
+			==> HTTP calls
+			==> Singleton
+
+	Dependency Injection (Inversion Of Control)
+		one of the design Priniciples of SOLID
+	
+	S ==> Single Responsibility
+	O ==> Open close principle
+	L ==> Liskov Substitution Principle
+	I ==> Interface Seggregation
+	D ==> Dependency Injection
+
+
+	 getCustomers():Observable<Customer[]> {
+  	  return this.http.get<Customer[]>(this.customerBaseUrl);
+  	}
+
+  	Observable is reactive style of programming
+  		needs a subscriber
+
+  	===============
+
+  	Node JS Server:
+  		app.js
+  			added code to allow access from different IP and port
+  			CROSS-ORIGIN settings
+
+  	1) DATABASE:
+  		MONGODB should be running
+  	2) BACKEND: [3000 port]
+  		OUR NODE JS Server should be running
+  		$ npm start
+  	3) FRONTEND: [ 4200 port ]
+  		Angular
+  			ng serve
+  		Angular service <---> NODEJS server 
+  		=============
+
+  		
+
+
+
+
+
+
+
+

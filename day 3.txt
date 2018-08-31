@@ -1,0 +1,148 @@
+
+	Unit Testing JavaScript
+	-----------------------
+
+	Unit is a small code // genrally a file
+
+	For every JS file we need to write one test file
+
+	End To End testing is about functionality
+
+	Unit Testing JavaScript can be done using frameworks like "Jasmine", "Mocha", etc
+
+	Client Side Js use "Jasmine" for unit testing
+	Server side JS use "Mocha" for unit testing
+
+	Mocha doesn't contain assertion libraries
+
+	Testing involves "Assemble", "Action", "Assert" AAA
+
+	var breakfastSchema = new Schema({
+  eggs: {
+    type: Number,
+    min: [6, 'Too few eggs'],
+    max: 12
+  },
+  bacon: {
+    type: Number,
+    required: [true, 'Why no bacon?']
+  },
+  drink: {
+    type: String,
+    enum: ['Coffee', 'Tea'],
+    required: function() {
+      return this.bacon > 3;
+    }
+  }
+});
+var Breakfast = db.model('Breakfast', breakfastSchema);
+
+var badBreakfast = new Breakfast({
+  eggs: 2,
+  bacon: 0,
+  drink: 'Milk'
+});
+var error = badBreakfast.validateSync();
+
+
+
+var userSchema = new Schema({
+  phone: {
+    type: String,
+    validate: {
+      validator: function(v) {
+        return /\d{3}-\d{3}-\d{4}/.test(v);
+      },
+      message: props => `${props.value} is not a valid phone number!`
+    },
+    required: [true, 'User phone number required']
+  }
+});
+
+var User = db.model('user', userSchema);
+var user = new User();
+var error;
+
+user.phone = '555.0123';
+error = user.validateSync();
+
+==========================================	
+	npm i --save-dev mocha chai request
+
+	
+	function doTask() {
+
+		return ...;
+	}
+
+	//sync
+	var res = doTask();
+	// lines after this executes only after doTask() completes
+
+	Async
+
+	function complete(data) {
+
+	}
+
+	function doTask(action) {
+		// code
+		complete(data);
+	}
+
+	doTask(complete);
+	====================
+
+	Using Promise API
+
+	function doTask() {
+		// code
+		returns a promise;
+	}
+
+	doTask().then(
+		() => {//success},
+		() => {//failure}
+	)
+========================
+
+	Node JS <========> Mongo DB
+
+	Mongoose MongoDB ODM ( Object Data mapping)
+
+	$	mongoimport --file customers.json --db visa_db --collection customers --drop
+
+
+	GET
+	http://localhost:3000/customers	
+
+	parsedUrl = "/customers"
+
+	trimmedPath = "customers"
+	method: 'get'
+
+	var chosenHandler = router[trimmedPath];
+	// chosenHandler = handlers.customers
+
+	handlers.customers(data, function(statusCode,payload) {
+        var payloadString = JSON.stringify(payload);
+        res.setHeader('Content-Type', 'application/json');
+        res.writeHead(statusCode);
+        res.end(payloadString);
+      });
+
+
+	var router = {
+		'customers' : handlers.customers
+	}
+
+	EXPRESS is a Middle tier framework works on NODE environment
+	used for building Traditional web applications
+	as well as RESTful Services.
+
+	npm i -g express express-generator
+
+	express meanapp
+	cd meanapp
+	npm i
+	

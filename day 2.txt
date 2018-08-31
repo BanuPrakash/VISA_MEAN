@@ -1,0 +1,190 @@
+	https://github.com/BanuPrakash/VISA_MEAN
+	Day 2
+	-----
+
+	NoSQL means "Not Only SQL" and not "NOSQL"
+	They can be used along with "Relational Database System"
+	They support querying operations like "SQL"
+
+	NOSQL types
+		a) Key Value Pair : REDIS, MemCacheDB
+		b) Graph SQL : NEO4j
+		c) Column based : HBASE, Cassandra
+		d) Document DB: MongoDB, CouchDB
+
+		Choose storage by applying CAP Theorem
+
+		ConsistencyAvailabiltyPartitionTolerence
+
+	Mongo DB is a "NOSQL" and is based on Document storage
+
+	RDBMS 											MongoDB
+
+	database 										database
+	Table 											collection
+	Row/ Tuple 										document
+													Stores data in BSON format
+
+	BSON ==> Binary Script Object Notation
+
+	========================
+
+	1) We need to start MongoDB server
+		Command Line: mongod --dbpath ./data
+		Or use 
+		MongoDB service
+
+	2) open Command line interface [ Mongo db shell]
+		$ mongo
+		> REPL for MONGODB
+
+		> use visa_db
+			uses visa_db database if it exists else it creates a new database
+		> show databases
+		> db.createCollection("movies")
+		> db.movies.insert({"id":1,"name":"Avengers"})	
+		> db.movies.insertMany([
+			{"id":2,"name":"Top Gun"},
+			{"id":3,"name":"Gladiator"}
+			])
+
+		SELECT * FROM MOVIES
+		> db.movies.find()
+
+		_id ==> acts like PRIMARY KEY and is of ObjectId type
+
+		> db.movies.find().pretty()
+
+	$ mongoimport --file sales.json --db visa_db --drop --collection sales
+
+		> show collections
+			movies
+			sales
+		> db.sales.find().pretty()
+		shows "20" documents
+		> it
+			next 20 documents
+		---
+		select * from sales where category is Beverages
+
+		> db.sales.find({'category':'Beverages'}).pretty()		
+> db.sales.find({'category':'Beverages', 'quarter': 1}).pretty()
+select * from sales where 'category' = 'Beverages' or 'quarter'=1
+> db.sales.find(
+	{	"$or":
+		[{'category':'Beverages'}, {'quarter': 1}]
+	},
+	{'quarter': 1}
+	).pretty()
+
+select product from sales where category is Beverages
+db.sales.find({'category':'Beverages'}, {'product': 1}).pretty()
+
+
+db.sales.find({'category':'Beverages'}).explain("executionStats")
+
+db.sales.createIndex({'category':1})
+db.sales.update({'quarter':1}, {
+		$set :
+		{'sales': 63434}
+});
+
+db.sales.updateMany({'quarter':1}, {
+		$set :
+		{'sales': 63434}
+});
+
+--------------------
+select category,sum(sales) from sales group by category
+db.sales.aggregate(
+	[	{
+			$group:
+				{
+				_id:'$category',
+				totalSales:{$sum:'$sales'}
+				}
+		}
+	]);
+
+db.sales.aggregate(
+		[
+			{
+				$group:
+				{
+					_id:'$category',
+					products:{$push:'$product'},
+					totalSales:{$sum:'$sales'}
+				}
+			}
+		]).pretty();
+
+ db.sales.aggregate(
+ 	[
+ 		{
+ 			$addFields:
+ 				{
+ 					"name":
+ 					{$concat:["$category","----->","$product"]}
+ 				}
+ 		}
+ 	]).pretty()
+ ===============================================================
+ 	NODE JS
+
+ 	setInterval(function() {
+ 		console.log("Hello");
+ 	}, 1000);
+
+ 	document.getElementById("addBtn").addEventListener("click",function() {
+
+ 	});
+
+ 	===============
+
+ 	Prefer Node JS for Real time applications
+ 	Streaming API [ NetFlix ]
+ 	PayPal moved to NODE JS [ Elon Musk ]
+ 	LinkedIn
+ 	walmart
+ 	===================
+ 	
+ 	Node JS use CommonJS module System
+ 	----------------------------------
+
+ 	Module System
+
+ 		include a file in html
+
+ 		<script src="a.js"></script>	
+ 		<script src="b.js"></script>
+ 		<script src="c.js"></script>
+
+ 		<script>
+
+ 		</script>
+
+ 	Asynchronous Module loading
+ 		a) AMD
+ 		b) CommonJS
+
+ 		if(condition) {
+ 			require('amodule');
+ 		}
+
+ 	=============
+
+ 		Node JS has many built-in modules
+ 		fs, repl, http, url, os
+
+ 		NPM: Node Package Manager
+ 		is used to manage dependencies similar to MAVeN
+
+ 		pom.xml ==> package.json
+
+ 		http://visa.com/clients/2
+
+ 		/clients is URI pathname
+
+ 		http://flipkart.com?category=mobile
+
+ 		//?category=mobile is query parameter
